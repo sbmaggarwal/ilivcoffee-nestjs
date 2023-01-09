@@ -35,10 +35,11 @@ export class CoffeesService {
 
   async findOne(coffeeId: number) {
     const coffee = await this.coffeeRepository.findOne({ where: { 'id': coffeeId }});
+
     if (!coffee) {
-      //throw new HttpException('Coffee not found', HttpStatus.NOT_FOUND);
+      throw new HttpException({message: 'Coffee not found'}, HttpStatus.NOT_FOUND);
       //throw new NotFoundException('Coffee not found');
-      throw 'Random error';
+      //throw 'Random error';
     }
 
     return coffee;

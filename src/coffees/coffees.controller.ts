@@ -33,8 +33,8 @@ export class CoffeesController {
   }
 
   @Get(":id")
-  getMyCoffee(@Res() response, @Param("id") id: number) {
-    return response.status(200).send(this.coffeeService.findOne(id));
+  async getMyCoffee(@Res() response, @Param("id") id: number) {
+    return await this.coffeeService.findOne(id);
   }
 
   @Post()
