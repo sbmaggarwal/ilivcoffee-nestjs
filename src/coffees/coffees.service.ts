@@ -24,7 +24,7 @@ export class CoffeesService {
   findAll(paginationQuery: PaginationQueryDto) {
     const { limit, offset } = paginationQuery;
 
-    console.log(this.configService.get<string>('DATABASE_HOST'));
+    console.log(this.configService.get('DATABASE_HOST'));
 
     return this.coffeeRepository.find({
       relations: ['flavors'],
