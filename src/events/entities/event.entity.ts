@@ -1,5 +1,7 @@
-import { Column, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
 
+@Index(['name', 'type']) // composite index
+@Entity()
 export class Event {
 
   @PrimaryGeneratedColumn()
