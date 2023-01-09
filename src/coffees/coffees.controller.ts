@@ -15,7 +15,7 @@ export class CoffeesController {
   }
 
   @Get(":id")
-  getMyCoffee(@Res() response, @Param("id") id: string) {
+  getMyCoffee(@Res() response, @Param("id") id: number) {
     return response.status(200).send(this.coffeeService.findOne(id));
   }
 
@@ -26,12 +26,12 @@ export class CoffeesController {
   }
 
   @Patch(":id")
-  updateCoffee(@Res() response, @Param("id") id: string, @Body() updateCoffeeDto: UpdateCoffeeDto) {
+  updateCoffee(@Res() response, @Param("id") id: number, @Body() updateCoffeeDto: UpdateCoffeeDto) {
     return response.status(200).send(this.coffeeService.update(id, updateCoffeeDto));
   }
 
   @Delete(":id")
-  deleteCoffee(@Res() response, @Param("id") id: string) {
+  deleteCoffee(@Res() response, @Param("id") id: number) {
     return response.status(200).send(this.coffeeService.remove(id));
   }
 
