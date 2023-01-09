@@ -5,11 +5,21 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { Coffee } from "./entities/coffee.entity";
 import { Flavor } from "./entities/flavor.entity";
 import { Event } from "../events/entities/event.entity";
+import * as process from "process";
+
+class ConfigService {}
+class DevConfigService {}
+class ProdConfigService {}
 
 @Module({
   // Pass all entities which we want to register with Type ORM (to make it aware)
   imports: [TypeOrmModule.forFeature([Coffee, Flavor, Event])],
   controllers: [CoffeesController],
-  providers: [CoffeesService],
+  providers: [CoffeesService,
+    {
+      provide: ConfigService,
+      useClass: process.env.NODE_ENV === 'development' ? DevConfigService : ProdConfigService
+    }],
+  exports: [CoffeesService]
 })
 export class CoffeesModule {}
